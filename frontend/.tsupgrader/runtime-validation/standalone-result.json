@@ -1,0 +1,103 @@
+{
+  "planHash": "d213d3333c9de2ce19a8ddc98b9f63d20fe4598d29a8df25a34f9607f2a8c893",
+  "phase": "standalone",
+  "recordedAtUtc": "2026-11-03T16:14:33.0896479Z",
+  "retryCount": 3,
+  "resetBaseline": false,
+  "complete": true,
+  "result": {
+    "setupSucceeded": true,
+    "setupDurationMs": 0,
+    "setupFailureOutput": null,
+    "assertions": [
+      {
+        "name": "frontend-build",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E ayush-gupta-portfolio@1.0.0 build\r\n\u003E tsc \u0026\u0026 vite build\r\n\r\n\u001B[36mvite v5.4.21 \u001B[32mbuilding for production...\u001B[36m\u001B[39m\r\ntransforming...\r\n\u001B[32m\u2713\u001B[39m 1959 modules transformed.\r\nGenerated an empty chunk: \u0022geo\u0022.\r\nrendering chunks...\r\ncomputing gzip size...\r\n\u001B[2mdist/\u001B[22m\u001B[32mindex.html                                                 \u001B[39m\u001B[1m\u001B[2m  1.69 kB\u001B[22m\u001B[1m\u001B[22m\u001B[2m \u2502 gzip:  0.91 kB\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/space-grotesk-vietnamese-700-normal-DMty7AZE.woff2  \u001B[39m\u001B[1m\u001B[2m  4.20 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/jetbrains-mono-greek-500-normal-JpySY46c.woff2      \u001B[39m\u001B[1m\u001B[2m  4.28 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/space-grotesk-vietnamese-600-normal-DUi7WF5p.woff2  \u001B[39m\u001B[1m\u001B[2m  4.31 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/space-grotesk-vietnamese-500-normal-BmEvtly_.woff2  \u001B[39m\u001B[1m\u001B[2m  4.32 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-vietnamese-400-normal-DMkecbls.woff2          \u001B[39m\u001B[1m\u001B[2m  4.97 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-vietnamese-600-normal-Cc8MFFhd.woff2          \u001B[39m\u001B[1m\u001B[2m  5.10 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-vietnamese-700-normal-DlLaEgI2.woff2          \u001B[39m\u001B[1m\u001B[2m  5.10 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-vietnamese-500-normal-DOriooB6.woff2          \u001B[39m\u001B[1m\u001B[2m  5.11 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-greek-ext-400-normal-DGGRlc-M.woff2           \u001B[39m\u001B[1m\u001B[2m  5.26 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/jetbrains-mono-cyrillic-500-normal-DmUKJPL_.woff2   \u001B[39m\u001B[1m\u001B[2m  5.36 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-greek-ext-500-normal-C4iEst2y.woff2           \u001B[39m\u001B[1m\u001B[2m  5.43 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-greek-ext-600-normal-DRtmH8MT.woff2           \u001B[39m\u001B[1m\u001B[2m  5.43 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-greek-ext-700-normal-qfdV9bQt.woff2           \u001B[39m\u001B[1m\u001B[2m  5.44 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/jetbrains-mono-vietnamese-500-normal-DNRqzVM1.woff  \u001B[39m\u001B[1m\u001B[2m  5.48 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/space-grotesk-vietnamese-700-normal-Duxec5Rn.woff   \u001B[39m\u001B[1m\u001B[2m  5.59 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/space-grotesk-vietnamese-600-normal-D6zpsUhD.woff   \u001B[39m\u001B[1m\u001B[2m  5.70 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/space-grotesk-vietnamese-500-normal-BTqKIpxg.woff   \u001B[39m\u001B[1m\u001B[2m  5.72 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/jetbrains-mono-greek-500-normal-D7SFKleX.woff       \u001B[39m\u001B[1m\u001B[2m  5.72 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-vietnamese-400-normal-Bbgyi5SW.woff           \u001B[39m\u001B[1m\u001B[2m  6.50 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-vietnamese-500-normal-mJboJaSs.woff           \u001B[39m\u001B[1m\u001B[2m  6.60 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-vietnamese-700-normal-BZaoP0fm.woff           \u001B[39m\u001B[1m\u001B[2m  6.63 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-vietnamese-600-normal-BuLX-rYi.woff           \u001B[39m\u001B[1m\u001B[2m  6.64 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/jetbrains-mono-cyrillic-500-normal-DJqRU3vO.woff    \u001B[39m\u001B[1m\u001B[2m  7.02 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-greek-ext-400-normal-KugGGMne.woff            \u001B[39m\u001B[1m\u001B[2m  7.06 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-greek-ext-500-normal-2j5mBUwD.woff            \u001B[39m\u001B[1m\u001B[2m  7.19 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-greek-ext-600-normal-B8X0CLgF.woff            \u001B[39m\u001B[1m\u001B[2m  7.21 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-greek-ext-700-normal-BoQ6DsYi.woff            \u001B[39m\u001B[1m\u001B[2m  7.22 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/dm-sans-latin-ext-400-normal-BtiwyxMk.woff2         \u001B[39m\u001B[1m\u001B[2m  7.36 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/jetbrains-mono-latin-ext-500-normal-Cut-4mMH.woff2  \u001B[39m\u001B[1m\u001B[2m  7.53 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-cyrillic-400-normal-obahsSVq.woff2            \u001B[39m\u001B[1m\u001B[2m  7.71 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-greek-400-normal-B4URO6DV.woff2               \u001B[39m\u001B[1m\u001B[2m  7.78 kB\u001B[22m\u001B[1m\u001B[22m\r\n\u001B[2mdist/\u001B[22m\u001B[32massets/inter-cyrillic-500-normal-BasfLYem.woff2            \u001B[39m\u001B[1m\u001B[2m  7.90 kB\n\u2026[truncated]",
+        "durationMs": 25606
+      },
+      {
+        "name": "tests-pass",
+        "kind": "process",
+        "verificationMethod": "test-results",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E ayush-gupta-portfolio@1.0.0 test\r\n\u003E vitest run\r\n\r\n\r\n\u001B[1m\u001B[46m RUN \u001B[49m\u001B[22m \u001B[36mv3.2.7 \u001B[39m\u001B[90mC:/NEW_PORTFOLIO/frontend\u001B[39m\r\n\r\n\u001B[90mstderr\u001B[2m | src/components/sections/SkillsSection.test.tsx\r\n\u001B[22m\u001B[39m[Content Validation] Unrecognized external URL: \u0022#\u0022\r\n[Content Validation] Unrecognized external URL: \u0022#\u0022\r\n[Content Validation] Unrecognized external URL: \u0022#\u0022\r\n[Content Validation] Unrecognized external URL: \u0022#\u0022\r\n[Content Validation] Unrecognized external URL: \u0022#\u0022\r\n\r\n \u001B[32m\u2713\u001B[39m src/components/sections/SkillsSection.test.tsx \u001B[2m(\u001B[22m\u001B[2m1 test\u001B[22m\u001B[2m)\u001B[22m\u001B[32m 71\u001B[2mms\u001B[22m\u001B[39m\r\n\r\n\u001B[2m Test Files \u001B[22m \u001B[1m\u001B[32m1 passed\u001B[39m\u001B[22m\u001B[90m (1)\u001B[39m\r\n\u001B[2m      Tests \u001B[22m \u001B[1m\u001B[32m1 passed\u001B[39m\u001B[22m\u001B[90m (1)\u001B[39m\r\n\u001B[2m   Start at \u001B[22m 21:44:22\r\n\u001B[2m   Duration \u001B[22m 6.29s\u001B[2m (transform 395ms, setup 0ms, collect 3.22s, tests 71ms, environment 0ms, prepare 2.34s)\u001B[22m\r\n\r\n",
+        "durationMs": 9100,
+        "testResults": {
+          "testFramework": "vitest",
+          "runnerDetectedFrom": "package_json",
+          "testsTotal": 1,
+          "testsPassed": 1,
+          "testsFailed": 0,
+          "testsSkipped": 0,
+          "parseFailed": false
+        }
+      },
+      {
+        "name": "dev-server-serves-home",
+        "kind": "http-probe",
+        "verificationMethod": "http-status",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": null,
+        "outputSample": "HTTP 200\n\u003C!DOCTYPE html\u003E\n\u003Chtml lang=\u0022en\u0022\u003E\n  \u003Chead\u003E\n    \u003Cscript type=\u0022module\u0022\u003Eimport { injectIntoGlobalHook } from \u0022/@react-refresh\u0022;\ninjectIntoGlobalHook(window);\nwindow.$RefreshReg$ = () =\u003E {};\nwindow.$RefreshSig$ = () =\u003E (type) =\u003E type;\u003C/script\u003E\n\n    \u003Cscript type=\u0022module\u0022 src=\u0022/@vite/client\u0022\u003E\u003C/script\u003E\n\n    \u003Cmeta charset=\u0022UTF-8\u0022 /\u003E\n    \u003Clink rel=\u0022icon\u0022 type=\u0022image/svg\u002Bxml\u0022 href=\u0022data:image/svg\u002Bxml,\u003Csvg xmlns=\u0027http://www.w3.org/2000/svg\u0027 viewBox=\u00270 0 100 100\u0027\u003E\u003Ctext y=\u0027.9em\u0027 font-size=\u002790\u0027 font-family=\u0027sans-serif\u0027 font-weight=\u0027bold\u0027 fill=\u0027%239B4DFF\u0027\u003EAG\u003Ctspan fill=\u0027%23FF4F00\u0027\u003E.\u003C/tspan\u003E\u003C/text\u003E\u003C/svg\u003E\u0022 /\u003E\n    \u003Cmeta name=\u0022viewport\u0022 content=\u0022width=device-width, initial-scale=1.0\u0022 /\u003E\n    \u003Ctitle\u003EAyush Gupta | Full-Stack \u0026 Backend Developer\u003C/title\u003E\n    \u003Cmeta name=\u0022description\u0022 content=\u0022Backend-first engineer building APIs, realtime systems and LLM tools that hold up under real use. Third-year B.Tech CSE (AI) student at Galgotias University.\u0022 /\u003E\n    \u003C!-- Preload hero portrait --\u003E\n    \u003Clink rel=\u0022preload\u0022 as=\u0022image\u0022 href=\u0022/portrait.png\u0022 /\u003E\n    \u003C!-- Prevent theme flash before hydrate --\u003E\n    \u003Cscript\u003E\n      (function() {\n        try {\n          var saved = localStorage.getItem(\u0027ayush_portfolio_theme\u0027);\n          var prefersDark = window.matchMedia(\u0027(prefers-color-scheme: dark)\u0027).matches;\n          var theme = saved === \u0027dark\u0027 || (saved !== \u0027light\u0027 \u0026\u0026 prefersDark) ? \u0027dark\u0027 : \u0027light\u0027;\n          document.documentElement.setAttribute(\u0027data-theme\u0027, theme);\n        } catch (e) {}\n      })();\n    \u003C/script\u003E\n  \u003C/head\u003E\n  \u003Cbody class=\u0022bg-bg text-ink antialiased selection:bg-accent selection:text-white\u0022\u003E\n    \u003Cdiv id=\u0022root\u0022\u003E\u003C/div\u003E\n    \u003Cscript type=\u0022module\u0022 src=\u0022/src/main.tsx\u0022\u003E\u003C/script\u003E\n  \u003C/body\u003E\n\u003C/html\u003E\n\n--- server output ---\n\r\n\u003E ayush-gupta-portfolio@1.0.0 dev\r\n\u003E vite --host 127.0.0.1 --port 5173 --strictPort\r\n\r\n\r\n  \u001B[32m\u001B[1mVITE\u001B[22m v5.4.21\u001B[39m  \u001B[2mready in \u001B[0m\u001B[1m631\u001B[22m\u001B[2m\u001B[0m ms\u001B[22m\r\n\r\n  \u001B[32m\u279C\u001B[39m  \u001B[1mLocal\u001B[22m:   \u001B[36mhttp://127.0.0.1:\u001B[1m5173\u001B[22m/\u001B[39m\r\n",
+        "durationMs": 3387
+      }
+    ],
+    "executions": [
+      {
+        "source": "frontend-build",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "run",
+          "build"
+        ],
+        "cwd": "C:\\NEW_PORTFOLIO\\frontend",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "tests-pass",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "test"
+        ],
+        "cwd": "C:\\NEW_PORTFOLIO\\frontend",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "dev-server-serves-home",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "run",
+          "dev",
+          "--",
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "5173",
+          "--strictPort"
+        ],
+        "cwd": "C:\\NEW_PORTFOLIO\\frontend",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      }
+    ]
+  }
+}
