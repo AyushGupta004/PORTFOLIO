@@ -22,6 +22,8 @@
   --accent: #FF3B00;
   --violet: #6D28D9;
   --hero-glow: rgba(244, 163, 177, 0.30);
+  --dot-color: #D4D4D8;
+  --hero-dot-color: rgba(24, 24, 27, 0.06);
   --timeline-line: #F3D1C6;
   --bg-dark: #0E0E10;
   --panel: #141417;
@@ -40,6 +42,8 @@
   --violet: #8B5CF6;
   --timeline-line: #3F3F46;
   --hero-glow: rgba(244, 163, 177, 0.30);
+  --dot-color: rgba(255, 255, 255, 0.14);
+  --hero-dot-color: rgba(255, 255, 255, 0.06);
   --bg-dark: #0E0E10;
   --panel: #141417;
   --border-dark: #27272A;
@@ -119,6 +123,16 @@ body {
 .overflow-wrap-anywhere {
   overflow-wrap: anywhere;
   word-break: break-word;
+}
+
+.credentials-section {
+  background-color: #F8F6F2;
+}
+
+[data-theme="dark"] .credentials-section {
+  background-color: #09090B;
+  background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 .credentials-heading {
@@ -904,6 +918,10 @@ body {
   transition: color 0.22s ease;
 }
 
+[data-theme="dark"] .hero-role-line {
+  color: #F5F5F7;
+}
+
 .hero-role-title:hover .hero-role-line {
   color: #FF3B00 !important;
 }
@@ -911,6 +929,11 @@ body {
 .hero-watermark {
   color: rgba(24, 24, 27, 0.055);
   -webkit-text-stroke: 1.5px rgba(24, 24, 27, 0.12);
+}
+
+[data-theme="dark"] .hero-watermark {
+  color: rgba(255, 255, 255, 0.06);
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.14);
 }
 
 ::selection,
@@ -1008,11 +1031,46 @@ span {
   font-weight: 600;
 }
 
+[data-theme="dark"] .skill-tile {
+  border-color: rgba(255, 255, 255, 0.14);
+  background-color: #141418 !important;
+}
+
+[data-theme="dark"] .skill-tile:hover {
+  border-color: var(--brand-color-dark, var(--brand-color)) !important;
+  background-color: #09090B !important;
+  box-shadow: 0 6px 18px -4px color-mix(in srgb, var(--brand-color-dark, var(--brand-color)) 30%, transparent);
+}
+
+[data-theme="dark"] .skill-icon {
+  color: #F4F4F5;
+  fill: #F4F4F5;
+  filter: none;
+}
+
+[data-theme="dark"] .skill-tile:hover .skill-icon {
+  color: var(--brand-color-dark, var(--brand-color)) !important;
+  fill: var(--brand-color-dark, var(--brand-color)) !important;
+  filter: none !important;
+}
+
+[data-theme="dark"] .skill-label {
+  color: #E4E4E7;
+}
+
+[data-theme="dark"] .skill-tile:hover .skill-label {
+  color: var(--brand-color-dark, var(--brand-color)) !important;
+}
+
 .section-subtitle {
   width: fit-content;
   max-width: 100%;
   border-bottom: 1.5px solid #18181B;
   padding-bottom: 10px;
+}
+
+[data-theme="dark"] .section-subtitle {
+  border-bottom-color: rgba(255, 255, 255, 0.25);
 }
 
 .section-subtitle > p {
@@ -1063,15 +1121,15 @@ span {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 70;
+  z-index: 99999;
   pointer-events: none;
-  color: #18181B;
+  color: #FFFFFF;
+  mix-blend-mode: difference;
   font-family: 'JetBrains Mono', monospace;
   font-size: 20px;
   font-weight: 500;
   line-height: 1;
   transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
-  transition: color 0.28s ease;
 }
 
 .custom-crosshair--light {
@@ -1098,6 +1156,16 @@ span {
 .portfolio-card:hover {
   transform: translateY(-4px);
   background: #18181B;
+}
+
+[data-theme="dark"] .portfolio-card {
+  background: #141418;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .portfolio-card:hover {
+  background: #09090B;
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .credentials-timeline-node {
@@ -1133,6 +1201,66 @@ span {
   color: #FFFFFF;
 }
 
+[data-theme="dark"] .credentials-heading h2 > span:first-child {
+  color: #FF3B00;
+}
+
+[data-theme="dark"] .credentials-heading p {
+  color: #A1A1AA;
+}
+
+[data-theme="dark"] .credential-card {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: #141418;
+}
+
+[data-theme="dark"] .credential-card:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: #09090B;
+}
+
+[data-theme="dark"] .credential-body h3 {
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .credential-subtitle,
+[data-theme="dark"] .credential-description {
+  color: #A1A1AA;
+}
+
+[data-theme="dark"] .credential-tag {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: #D4D4D8;
+}
+
+[data-theme="dark"] .credential-card:hover .credential-tag {
+  border-color: #3F3F46;
+  background: #27272A;
+  color: #E4E4E7;
+}
+
+[data-theme="dark"] .credential-footer {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .credential-card:hover .credential-footer {
+  border-color: #3F3F46;
+}
+
+[data-theme="dark"] .credential-footer > span:first-child {
+  color: #A1A1AA;
+}
+
+[data-theme="dark"] .credential-footer a {
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .credential-footer a:hover,
+[data-theme="dark"] .credential-card:hover .credential-footer a:hover {
+  color: #FF3B00;
+}
+
 .credentials-arrow:hover:not(:disabled) {
   background: #FF3B00;
   color: #FFFFFF;
@@ -1141,6 +1269,25 @@ span {
 .credentials-arrow:disabled {
   background: #A1A1AA;
   opacity: 0.45;
+}
+
+[data-theme="dark"] .credentials-arrow {
+  background: #27272A;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+[data-theme="dark"] .credentials-arrow:hover:not(:disabled) {
+  background: #FF3B00;
+  border-color: #FF3B00;
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .credentials-arrow:disabled {
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.12);
+  opacity: 0.6;
 }
 
 .carousel-arrow {
@@ -1156,6 +1303,25 @@ span {
 .carousel-arrow:disabled {
   background: #A1A1AA !important;
   opacity: 0.45;
+}
+
+[data-theme="dark"] .carousel-arrow {
+  background: #27272A !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+}
+
+[data-theme="dark"] .carousel-arrow:hover:not(:disabled) {
+  background: #FF3B00 !important;
+  color: #FFFFFF !important;
+  border-color: #FF3B00 !important;
+}
+
+[data-theme="dark"] .carousel-arrow:disabled {
+  background: rgba(255, 255, 255, 0.14) !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  opacity: 0.6;
 }
 
 .animate-marquee {

@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValueEvent, useScroll, useTransform } from 'framer-motion';
 import { ChevronRight, ArrowRight, ArrowUpRight } from 'lucide-react';
-import { heroCompetencies, heroStates, portfolioContent } from '../../data/content';
+import { portfolioContent, heroCompetencies, heroStates } from '../../data/content';
 import { useScrollContext } from '../../context/ScrollContext';
+import { useTheme } from '../../context/ThemeContext';
 import { useParallax } from '../../utils/useParallax';
 import { soundManager } from '../../utils/sound';
 
@@ -15,6 +16,8 @@ const LAST_PANEL_PROGRESS = 1 / 8;
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
   const { hero, personal } = portfolioContent;
+  const { effectiveTheme } = useTheme();
+  const roleRestColor = effectiveTheme === 'dark' ? '#F5F5F7' : '#18181B';
   const { prefersReducedMotion, isDesktop, scrollProgress, trackContainerRef, scrollToSection } = useScrollContext();
   const [currentStateId, setCurrentStateId] = useState<number>(heroStates[0].id);
   const [portraitSource, setPortraitSource] = useState(() =>
@@ -191,8 +194,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
                   initial={{ color: '#FF3B00' }}
                   animate={{
                     color: isCurrent
-                      ? ['#FF3B00', '#FF3B00', '#18181B']
-                      : '#18181B',
+                      ? ['#FF3B00', '#FF3B00', roleRestColor]
+                      : roleRestColor,
                   }}
                   transition={{
                     color: {
@@ -225,7 +228,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
               onExploreClick?.();
             }}
             style={{ fontWeight: 700 }}
-            className="group inline-flex min-h-11 items-center gap-3 rounded-full bg-[#18181B] px-5 py-3 font-heading text-[11px] font-bold uppercase tracking-[0.08em] text-white transition-[transform,box-shadow] duration-[220ms] ease-[ease] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(24,24,27,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--accent)]"
+            className="group inline-flex min-h-11 items-center gap-3 rounded-full bg-[#18181B] px-5 py-3 font-heading text-[11px] font-bold uppercase tracking-[0.08em] text-white transition-[transform,box-shadow] duration-[220ms] ease-[ease] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(24,24,27,0.18)] dark:bg-white dark:text-[#09090B] dark:hover:shadow-[0_8px_20px_rgba(255,255,255,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--accent)]"
           >
             <span>VIEW MY WORK</span>
             <ArrowRight size={14} aria-hidden="true" />
@@ -236,7 +239,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
             rel="noopener noreferrer"
             onClick={() => soundManager.playPop()}
             style={{ fontWeight: 700 }}
-            className="group inline-flex min-h-11 items-center gap-3 rounded-full border border-[var(--ink)] px-5 py-3 font-heading text-[11px] font-bold uppercase tracking-[0.08em] text-[#18181B] transition-[transform,background-color,border-color] duration-[220ms] ease-[ease] hover:-translate-y-px hover:border-[#FF3B00] hover:bg-[rgba(255,59,0,0.08)] hover:text-[#18181B] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--accent)]"
+            className="group inline-flex min-h-11 items-center gap-3 rounded-full border border-[var(--ink)] px-5 py-3 font-heading text-[11px] font-bold uppercase tracking-[0.08em] text-[#18181B] transition-[transform,background-color,border-color] duration-[220ms] ease-[ease] hover:-translate-y-px hover:border-[#FF3B00] hover:bg-[rgba(255,59,0,0.08)] hover:text-[#18181B] dark:border-white/30 dark:text-white dark:hover:border-[#FF3B00] dark:hover:bg-[rgba(255,59,0,0.12)] dark:hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--accent)]"
           >
             <span>RESUME</span>
             <ArrowUpRight size={14} aria-hidden="true" />
@@ -321,7 +324,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
         className="pointer-events-none absolute inset-0 z-20"
         style={{
           backgroundImage:
-            'radial-gradient(rgba(24, 24, 27, 0.06) 1px, transparent 1px)',
+            'radial-gradient(var(--hero-dot-color) 1px, transparent 1px)',
           backgroundSize: '24px 24px',
         }}
       />

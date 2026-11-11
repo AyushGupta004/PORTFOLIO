@@ -62,7 +62,7 @@ export const ProjectsSection: React.FC = () => {
       className="relative flex h-full min-h-screen w-full flex-col justify-center overflow-hidden px-6 pb-8 pt-[84px] sm:px-8 lg:px-12"
       style={{
         backgroundColor: 'var(--bg)',
-        backgroundImage: 'radial-gradient(#D4D4D8 1px, transparent 1px)',
+        backgroundImage: 'radial-gradient(var(--dot-color) 1px, transparent 1px)',
         backgroundSize: '24px 24px',
       }}
     >
@@ -70,13 +70,13 @@ export const ProjectsSection: React.FC = () => {
         <div className="mb-5 flex flex-col gap-5 xl:mb-6 xl:flex-row xl:items-end xl:justify-between">
           <div className="min-w-0">
             <h2
-              className="section-heading m-0 font-heading text-[clamp(2rem,3.34vw,3rem)] font-extrabold uppercase leading-none tracking-[-0.04em]"
+              className="section-heading m-0 font-heading text-[clamp(2rem,3.34vw,3rem)] font-extrabold uppercase leading-none tracking-[-0.04em] text-[var(--ink)]"
               style={{ fontWeight: 800 }}
             >
               FEATURED <span className="text-[var(--accent)]">PROJECTS</span>
             </h2>
             <div className="section-subtitle mt-3">
-              <p className="mb-0 font-sans text-[14px] leading-relaxed text-[#71717A]">
+              <p className="mb-0 font-sans text-[14px] leading-relaxed text-[#71717A] dark:text-[#A1A1AA]">
                 A collection of projects that turn ideas into real, usable experiences.
               </p>
             </div>
@@ -94,8 +94,8 @@ export const ProjectsSection: React.FC = () => {
                     onClick={() => updateFilter(filter)}
                     className={`cursor-crosshair rounded-full border px-3 py-1.5 font-label text-[10px] transition-colors duration-[280ms] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] sm:text-[11px] ${
                       isActive
-                        ? 'border-[var(--ink)] bg-[var(--ink)] text-white'
-                        : 'border-[var(--border)] bg-[var(--card)] text-[var(--muted)] hover:border-[var(--ink)] hover:text-[var(--ink)]'
+                        ? 'border-[var(--ink)] bg-[var(--ink)] text-white dark:border-white dark:bg-white dark:text-[#09090B]'
+                        : 'border-[var(--border)] bg-[var(--card)] text-[var(--muted)] hover:border-[var(--ink)] hover:text-[var(--ink)] dark:border-white/15 dark:bg-[#141418] dark:text-[#A1A1AA] dark:hover:border-white dark:hover:text-white'
                     }`}
                   >
                     {filter}
@@ -177,10 +177,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       height: 360,
       opacity: isDimmed ? 0.45 : 1,
     }}
-    className="portfolio-card group flex shrink-0 flex-col rounded-2xl border border-[var(--border)] p-5 text-[var(--ink)] hover:border-[#18181B] hover:bg-[#18181B] hover:text-white sm:p-6"
+    className="portfolio-card group flex shrink-0 flex-col rounded-2xl border border-[var(--border)] p-5 text-[var(--ink)] hover:border-[#18181B] hover:bg-[#18181B] hover:text-white dark:border-white/15 dark:hover:border-white/30 dark:hover:bg-[#09090B] sm:p-6"
   >
     <div className="flex min-h-4 items-center justify-between gap-3">
-      <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#71717A] transition-colors duration-[280ms] group-hover:text-[#A1A1AA]">
+      <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#71717A] transition-colors duration-[280ms] dark:text-[#A1A1AA] group-hover:text-[#A1A1AA]">
         {project.date}
       </span>
       <span className="text-right font-label text-[9px] font-semibold tracking-[0.12em] text-[var(--accent)] sm:text-[10px]">
@@ -192,14 +192,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <h3 className="m-0 font-heading text-[22px] font-bold leading-tight tracking-[-0.03em] text-[var(--ink)] transition-colors duration-[280ms] group-hover:text-white">
         {project.title}
       </h3>
-      <p className="mt-3 line-clamp-3 font-sans text-[13px] leading-[1.65] text-[#52525B] transition-colors duration-[280ms] group-hover:text-[#A1A1AA]">
+      <p className="mt-3 line-clamp-3 font-sans text-[13px] leading-[1.65] text-[#52525B] transition-colors duration-[280ms] dark:text-[#A1A1AA] group-hover:text-[#A1A1AA]">
         {project.blurb}
       </p>
       <div className="mt-4 flex flex-wrap gap-1.5">
         {project.stack.map((technology) => (
           <span
             key={technology}
-            className="rounded-md border border-[var(--border)] bg-white/40 px-2 py-1 font-mono text-[9px] leading-none text-[#52525B] transition-colors duration-[280ms] group-hover:border-[#3F3F46] group-hover:bg-[#27272A] group-hover:text-[#E4E4E7] sm:text-[10px]"
+            className="rounded-md border border-[var(--border)] bg-white/40 px-2 py-1 font-mono text-[9px] leading-none text-[#52525B] transition-colors duration-[280ms] dark:border-white/15 dark:bg-white/[0.06] dark:text-[#D4D4D8] group-hover:border-[#3F3F46] group-hover:bg-[#27272A] group-hover:text-[#E4E4E7] sm:text-[10px]"
           >
             {technology}
           </span>
@@ -207,7 +207,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
     </div>
 
-    <div className="mt-4 flex items-center justify-between border-t border-[var(--border)] pt-3 transition-colors duration-[280ms] group-hover:border-[#3F3F46]">
+    <div className="mt-4 flex items-center justify-between border-t border-[var(--border)] pt-3 transition-colors duration-[280ms] dark:border-white/12 group-hover:border-[#3F3F46]">
       <a
         href={project.liveUrl ?? '#'}
         onClick={(event) => {

@@ -10,7 +10,7 @@ export const AboutSection: React.FC = () => {
     return parts.map((part, index) => {
       if (part.startsWith('**') && part.endsWith('**')) {
         return (
-          <strong key={index} className="font-semibold text-[#18181B]">
+          <strong key={index} className="font-semibold text-[#18181B] dark:text-white">
             {part.slice(2, -2).split(/(\s+)/).map((word, wordIndex) =>
               /^\s+$/.test(word) ? word : (
                 <span key={wordIndex} className="keyword-word">
@@ -32,7 +32,7 @@ export const AboutSection: React.FC = () => {
       style={{
         backgroundColor: 'var(--bg)',
         backgroundImage:
-          'radial-gradient(#D4D4D8 1px, transparent 1px)',
+          'radial-gradient(var(--dot-color) 1px, transparent 1px)',
         backgroundSize: '24px 24px',
       }}
     >
@@ -44,19 +44,19 @@ export const AboutSection: React.FC = () => {
         className="w-full max-w-[850px]"
       >
         <h2
-          className="section-heading m-0 font-heading text-[48px] font-extrabold uppercase leading-none tracking-[-0.04em]"
+          className="section-heading m-0 font-heading text-[48px] font-extrabold uppercase leading-none tracking-[-0.04em] text-[var(--ink)]"
           style={{ fontWeight: 800 }}
         >
           ABOUT <span className="text-[var(--accent)]">ME</span>
         </h2>
 
         <div className="section-subtitle mt-3">
-          <p className="mb-0 font-sans text-[14px] italic leading-relaxed text-[#71717A]">
+          <p className="mb-0 font-sans text-[14px] italic leading-relaxed text-[#71717A] dark:text-[#A1A1AA]">
             {about.subtitle}
           </p>
         </div>
 
-        <div className="space-y-5 font-sans text-base leading-[1.75] text-[#52525B] sm:text-[17px]">
+        <div className="space-y-5 font-sans text-base leading-[1.75] text-[#52525B] dark:text-[#A1A1AA] sm:text-[17px]">
           {about.paragraphs.map((paragraph, index) =>
             index === 1 ? (
               <motion.p

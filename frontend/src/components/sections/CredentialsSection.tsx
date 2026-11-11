@@ -38,7 +38,7 @@ export const CredentialsSection = () => {
   return (
     <section
       id="section-08"
-      className="credentials-section relative flex h-full min-h-screen w-full flex-col justify-between bg-[#F8F6F2] px-4 pb-4 pt-[76px] sm:px-6 sm:pb-5 md:px-10 md:pt-[88px] lg:px-12 lg:pt-[92px]"
+      className="credentials-section relative flex h-full min-h-screen w-full flex-col justify-between px-4 pb-4 pt-[76px] sm:px-6 sm:pb-5 md:px-10 md:pt-[88px] lg:px-12 lg:pt-[92px]"
     >
       <div>
         <div className="credentials-heading-row">
@@ -86,7 +86,7 @@ export const CredentialsSection = () => {
                   >
                     <p className="font-mono text-xs font-bold text-[#FF3B00]">
                       <span>{credential.timelineDate.slice(0, 2)}</span>
-                      <span className="ml-2 font-medium text-[#71717A]">
+                      <span className="ml-2 font-medium text-[#71717A] dark:text-[#A1A1AA]">
                         {credential.timelineDate.slice(3)}
                       </span>
                     </p>

@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { portfolioContent } from '../../data/content';
+import { useTheme } from '../../context/ThemeContext';
 import { soundManager } from '../../utils/sound';
 
 const githubUsername = import.meta.env.VITE_GITHUB_USERNAME?.trim() || 'AyushGupta004';
@@ -20,7 +21,8 @@ const leetcodeStatsFallbackApiBaseUrl =
 const leetcodeGraphqlUrl =
   import.meta.env.VITE_LEETCODE_GRAPHQL_URL?.trim() || '/api/leetcode';
 
-const heatmapColors = ['#F4F4F5', '#E9D5FF', '#C084FC', '#9333EA', '#581C87'];
+const LIGHT_HEATMAP_COLORS = ['#F4F4F5', '#E9D5FF', '#C084FC', '#9333EA', '#581C87'];
+const DARK_HEATMAP_COLORS = ['#232329', '#4C1D95', '#7E22CE', '#A855F7', '#D8B4FE'];
 
 const formatDate = (date: Date) =>
   date.toLocaleDateString('en-US', {
@@ -309,6 +311,8 @@ const emptyLeetcodeActivity = (): LeetcodeActivity => ({
 });
 
 export const CodingActivitySection: React.FC = () => {
+  const { effectiveTheme } = useTheme();
+  const heatmapColors = effectiveTheme === 'dark' ? DARK_HEATMAP_COLORS : LIGHT_HEATMAP_COLORS;
   const sectionRef = React.useRef<HTMLElement>(null);
   const { codingStats } = portfolioContent;
   const ghData = codingStats.github;
@@ -686,12 +690,12 @@ export const CodingActivitySection: React.FC = () => {
       {stats.map((stat) => (
         <div
           key={stat.label}
-          className="min-w-0 rounded-[10px] border border-[#E4E4E7] bg-[#FAFAFA] px-2.5 py-3"
+          className="min-w-0 rounded-[10px] border border-[#E4E4E7] bg-[#FAFAFA] px-2.5 py-3 dark:border-white/10 dark:bg-[#1C1C22]"
         >
-          <div className="truncate font-label text-[9px] leading-tight text-[#71717A]">
+          <div className="truncate font-label text-[9px] leading-tight text-[#71717A] dark:text-[#A1A1AA]">
             {stat.label}
           </div>
-          <div className="mt-1 truncate font-heading text-lg leading-tight text-[#18181B]">
+          <div className="mt-1 truncate font-heading text-lg leading-tight text-[#18181B] dark:text-white">
             {stat.value}
           </div>
         </div>
@@ -704,13 +708,14 @@ export const CodingActivitySection: React.FC = () => {
       ref={sectionRef}
       id="section-05"
       className="relative flex h-full min-h-screen w-full flex-col px-4 pb-4 pt-[76px] sm:px-6 sm:pb-5 md:px-10 md:pt-[88px] lg:px-12 lg:pt-[92px]"
+      style={{ backgroundColor: 'var(--bg)' }}
     >
       <header className="mb-5 sm:mb-6">
         <h2 className="section-heading font-heading text-[clamp(2rem,4vw,3rem)] font-extrabold leading-none tracking-[-0.04em] text-[var(--ink)]">
           CODING <span className="text-[#FF3B00]">ACTIVITY</span>
         </h2>
         <div className="section-subtitle mt-2">
-          <p className="mb-0 text-sm text-[#71717A]">
+          <p className="mb-0 text-sm text-[#71717A] dark:text-[#A1A1AA]">
             Live from GitHub and LeetCode: what I ship, and how I practise.
           </p>
         </div>
@@ -722,20 +727,20 @@ export const CodingActivitySection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45 }}
-          className="flex min-w-0 flex-col rounded-2xl border border-[#E4E4E7] bg-white p-5 sm:p-7"
+          className="flex min-w-0 flex-col rounded-2xl border border-[#E4E4E7] bg-white p-5 dark:border-white/15 dark:bg-[#141418] sm:p-7"
           aria-labelledby="github-card-title"
         >
-          <div className="mb-5 flex items-center justify-between border-b border-[#E4E4E7] pb-4">
+          <div className="mb-5 flex items-center justify-between border-b border-[#E4E4E7] pb-4 dark:border-white/12">
             <h3 id="github-card-title" className="font-label text-xs tracking-[0.12em]">
               <span className="text-[#FF3B00]">01</span>{' '}
-              <span className="text-[#18181B]">GITHUB</span>
+              <span className="text-[#18181B] dark:text-white">GITHUB</span>
             </h3>
             <a
               href={ghData.profileUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => soundManager.playPop()}
-              className="flex items-center gap-1 font-mono text-xs text-[#18181B] transition-colors hover:text-[#FF3B00]"
+              className="flex items-center gap-1 font-mono text-xs text-[#18181B] transition-colors hover:text-[#FF3B00] dark:text-white dark:hover:text-[#FF3B00]"
               aria-label={`Open GitHub profile for @${ghData.username}`}
             >
               @{ghData.username} <ExternalLink size={12} aria-hidden="true" />
@@ -744,17 +749,17 @@ export const CodingActivitySection: React.FC = () => {
 
           <div className="mb-5">
             <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-              <span className="font-heading text-[28px] font-bold leading-none text-[#18181B]">
+              <span className="font-heading text-[28px] font-bold leading-none text-[#18181B] dark:text-white">
                 {githubActivity.contributions === null
                   ? githubLoading ? 'Loading…' : 'Unavailable'
                   : formatNumber(githubActivity.contributions)}
               </span>
-              <span className="text-sm text-[#71717A]">contributions in the last year</span>
+              <span className="text-sm text-[#71717A] dark:text-[#A1A1AA]">contributions in the last year</span>
             </div>
           </div>
 
           <div className="min-w-0">
-            <div className="mb-2 grid grid-cols-[repeat(52,minmax(0,1fr))] text-[10px] font-mono text-[#71717A]">
+            <div className="mb-2 grid grid-cols-[repeat(52,minmax(0,1fr))] text-[10px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
               {days.monthLabels.map(({ month, week }, index) => (
                 <span key={`${month}-${week}-${index}`} style={{ gridColumnStart: week + 1 }}>
                   {month}
@@ -803,17 +808,17 @@ export const CodingActivitySection: React.FC = () => {
           </div>
 
           <div className="mt-4 flex min-h-6 flex-wrap items-center justify-between gap-2">
-            <p className="min-h-5 text-xs text-[#52525B]" aria-live="polite">
+            <p className="min-h-5 text-xs text-[#52525B] dark:text-[#A1A1AA]" aria-live="polite">
               {selectedDay && selectedContributionCount !== undefined && selectedContributionCount !== null
                 ? `${selectedContributionCount} contribution${selectedContributionCount === 1 ? '' : 's'} · ${formatDate(selectedDay)}`
                 : 'Hover a day for details'}
             </p>
-            <div className="flex items-center gap-1.5 text-[10px] text-[#71717A]" aria-label="Contribution intensity legend">
+            <div className="flex items-center gap-1.5 text-[10px] text-[#71717A] dark:text-[#A1A1AA]" aria-label="Contribution intensity legend">
               <span>Less</span>
               {heatmapColors.map((color) => (
                 <span
                   key={color}
-                  className="h-2.5 w-2.5 rounded-[2px] border border-black/5"
+                  className="h-2.5 w-2.5 rounded-[2px] border border-black/5 dark:border-white/10"
                   style={{ backgroundColor: color }}
                 />
               ))}
@@ -821,7 +826,7 @@ export const CodingActivitySection: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-auto border-t border-[#E4E4E7] pt-5">
+          <div className="mt-auto border-t border-[#E4E4E7] pt-5 dark:border-white/12">
             {renderStatBoxes(githubStats)}
           </div>
         </motion.article>
@@ -831,20 +836,20 @@ export const CodingActivitySection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45, delay: 0.08 }}
-          className="flex min-w-0 flex-col rounded-2xl border border-[#E4E4E7] bg-white p-5 sm:p-7"
+          className="flex min-w-0 flex-col rounded-2xl border border-[#E4E4E7] bg-white p-5 dark:border-white/15 dark:bg-[#141418] sm:p-7"
           aria-labelledby="leetcode-card-title"
         >
-          <div className="mb-5 flex items-center justify-between border-b border-[#E4E4E7] pb-4">
+          <div className="mb-5 flex items-center justify-between border-b border-[#E4E4E7] pb-4 dark:border-white/12">
             <h3 id="leetcode-card-title" className="font-label text-xs tracking-[0.12em]">
               <span className="text-[#FF3B00]">02</span>{' '}
-              <span className="text-[#18181B]">LEETCODE</span>
+              <span className="text-[#18181B] dark:text-white">LEETCODE</span>
             </h3>
             <a
               href={lcData.profileUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => soundManager.playPop()}
-              className="flex items-center gap-1 font-mono text-xs text-[#18181B] transition-colors hover:text-[#FF3B00]"
+              className="flex items-center gap-1 font-mono text-xs text-[#18181B] transition-colors hover:text-[#FF3B00] dark:text-white dark:hover:text-[#FF3B00]"
               aria-label={`Open LeetCode profile for @${lcData.username}`}
             >
               @{lcData.username} <ExternalLink size={12} aria-hidden="true" />
@@ -859,7 +864,7 @@ export const CodingActivitySection: React.FC = () => {
                       ? leetcodeLoading ? 'Loading…' : 'Unavailable'
                       : formatNumber(leetcodeActivity.totalSolved)}
                 </span>
-                <span className="font-sans text-[11px] normal-case text-[#71717A]">problems solved</span>
+                <span className="font-sans text-[11px] normal-case text-[#71717A] dark:text-[#A1A1AA]">problems solved</span>
               </div>
             </div>
             <div className="flex min-w-0 flex-col gap-3">
@@ -867,14 +872,14 @@ export const CodingActivitySection: React.FC = () => {
                 <div key={stat.label} className="min-w-0">
                   <div className="mb-1 flex items-center justify-between text-[10px] font-label">
                     <span style={{ color: stat.color }}>{stat.label}</span>
-                    <span className="font-mono text-[#18181B]">
+                    <span className="font-mono text-[#18181B] dark:text-white">
                       {stat.value === null || stat.total === null
                         ? leetcodeLoading ? 'Loading…' : 'Unavailable'
                         : `${formatNumber(stat.value)} / ${formatNumber(stat.total)}`}
                     </span>
                   </div>
                   <div
-                    className="h-1.5 overflow-hidden rounded-full bg-[#F4F4F5]"
+                    className="h-1.5 overflow-hidden rounded-full bg-[#F4F4F5] dark:bg-white/10"
                     role="progressbar"
                     aria-label={`${stat.label.toLowerCase()} problems solved`}
                     aria-valuenow={stat.value ?? undefined}
@@ -901,13 +906,13 @@ export const CodingActivitySection: React.FC = () => {
             {leetcodeActivity.languages.map((language) => (
               <span
                 key={language.name}
-                className="rounded-full border border-[#E4E4E7] px-3 py-1 font-mono text-[11px] text-[#3F3F46]"
+                className="rounded-full border border-[#E4E4E7] px-3 py-1 font-mono text-[11px] text-[#3F3F46] dark:border-white/15 dark:bg-white/[0.04] dark:text-[#D4D4D8]"
               >
                 {language.name} · {formatNumber(language.count)}
               </span>
             ))}
             {leetcodeActivity.languages.length === 0 && (
-              <span className="font-mono text-[11px] text-[#71717A]">
+              <span className="font-mono text-[11px] text-[#71717A] dark:text-[#A1A1AA]">
                 {leetcodeLoading ? 'Loading languages…' : 'Language data unavailable'}
               </span>
             )}
@@ -916,14 +921,14 @@ export const CodingActivitySection: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => soundManager.playPop()}
-              className="flex items-center gap-1 rounded-full border border-[#E4E4E7] px-3 py-1 font-mono text-[11px] text-[#3F3F46] transition-colors hover:border-[#FF3B00] hover:text-[#FF3B00]"
+              className="flex items-center gap-1 rounded-full border border-[#E4E4E7] px-3 py-1 font-mono text-[11px] text-[#3F3F46] transition-colors hover:border-[#FF3B00] hover:text-[#FF3B00] dark:border-white/15 dark:text-[#E4E4E7] dark:hover:border-[#FF3B00] dark:hover:text-[#FF3B00]"
               aria-label={`Open Codolio profile for ${codingStats.codolio.username}`}
             >
               CODOLIO <ExternalLink size={10} aria-hidden="true" />
             </a>
           </div>
 
-          <div className="mt-auto border-t border-[#E4E4E7] pt-5">
+          <div className="mt-auto border-t border-[#E4E4E7] pt-5 dark:border-white/12">
             {renderStatBoxes(leetcodeStats)}
           </div>
         </motion.article>

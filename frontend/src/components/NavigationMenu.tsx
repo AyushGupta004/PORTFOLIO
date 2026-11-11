@@ -47,7 +47,7 @@ export const NavigationMenu: React.FC = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 bg-[var(--bg)]/90 backdrop-blur-sm"
+          className="fixed inset-0 z-50 bg-[var(--bg)]/90 backdrop-blur-sm dark:bg-[#09090B]/90"
           aria-hidden="true"
         >
           <motion.div

@@ -45,6 +45,16 @@ const skillBrandColors: Record<string, string> = {
   Ollama: '#EA580C',
 };
 
+const skillBrandDarkColors: Record<string, string> = {
+  'C++': '#60A5FA',
+  'Next.js': '#FFFFFF',
+  'Express.js': '#E4E4E7',
+  PostgreSQL: '#60A5FA',
+  Vercel: '#FFFFFF',
+  JWT: '#C084FC',
+  Cursor: '#60A5FA',
+};
+
 export const SkillsSection: React.FC = () => {
   const { skills } = portfolioContent;
 
@@ -54,20 +64,20 @@ export const SkillsSection: React.FC = () => {
       className="relative flex min-h-screen w-full flex-col justify-center overflow-hidden px-6 pb-8 pt-[84px] sm:px-8 lg:px-12"
       style={{
         backgroundColor: 'var(--bg)',
-        backgroundImage: 'radial-gradient(#D4D4D8 1px, transparent 1px)',
+        backgroundImage: 'radial-gradient(var(--dot-color) 1px, transparent 1px)',
         backgroundSize: '24px 24px',
       }}
     >
       <div className="mx-auto w-full max-w-[1440px]">
         <div>
           <h2
-            className="section-heading m-0 font-heading text-[clamp(2rem,3.34vw,3rem)] font-extrabold uppercase leading-none tracking-[-0.04em]"
+            className="section-heading m-0 font-heading text-[clamp(2rem,3.34vw,3rem)] font-extrabold uppercase leading-none tracking-[-0.04em] text-[var(--ink)]"
             style={{ fontWeight: 800 }}
           >
             SKILLS &amp; <span className="text-[var(--accent)]">TECHNOLOGIES</span>
           </h2>
           <div className="section-subtitle mt-3">
-            <p className="mb-0 font-sans text-[14px] leading-relaxed text-[#71717A]">
+            <p className="mb-0 font-sans text-[14px] leading-relaxed text-[#71717A] dark:text-[#A1A1AA]">
               Technologies, frameworks, and engineering tools I use to build scalable systems.
             </p>
           </div>
@@ -87,7 +97,7 @@ export const SkillsSection: React.FC = () => {
               }}
               className="min-w-0"
             >
-              <div className="flex items-center gap-2 border-t border-[#D4D4D8] pt-2.5">
+              <div className="flex items-center gap-2 border-t border-[#D4D4D8] pt-2.5 dark:border-white/20">
                 <span className="font-label text-[12px] font-bold tracking-[0.08em] text-[var(--accent)]">
                   {category.number}
                 </span>
@@ -103,9 +113,14 @@ export const SkillsSection: React.FC = () => {
                     whileHover={{ y: -2 }}
                     transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                     onMouseEnter={() => soundManager.playTick(1000, 0.02)}
-                    className="skill-tile group flex h-[82px] w-[82px] cursor-default flex-col items-center justify-center gap-2 rounded-[14px] border-[1.5px] border-[#E4E4E7] bg-white text-[#18181B]"
+                    className="skill-tile group flex h-[82px] w-[82px] cursor-default flex-col items-center justify-center gap-2 rounded-[14px] border-[1.5px] border-[#E4E4E7] bg-white text-[#18181B] dark:border-white/15 dark:bg-[#141418] dark:text-white"
                     data-skill={skill.name}
-                    style={{ '--brand-color': skillBrandColors[skill.name] ?? '#18181B' } as React.CSSProperties}
+                    style={{
+                      '--brand-color': skillBrandColors[skill.name] ?? '#18181B',
+                      ...(skillBrandDarkColors[skill.name]
+                        ? { '--brand-color-dark': skillBrandDarkColors[skill.name] }
+                        : {}),
+                    } as React.CSSProperties}
                   >
                     <BrandIcon
                       name={skill.iconName}
