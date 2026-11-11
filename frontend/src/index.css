@@ -392,6 +392,25 @@ body {
   }
 }
 
+@media (max-width: 767px) {
+  .credential-card {
+    height: auto;
+    min-height: unset;
+    overflow: visible;
+    padding-bottom: 1.5rem;
+  }
+
+  .credential-description {
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+  }
+
+  .credential-footer {
+    margin-top: 1.25rem;
+  }
+}
+
 @media (max-height: 720px) {
   #section-08 {
     padding-top: 48px;
@@ -936,6 +955,15 @@ body {
   -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.14);
 }
 
+.hero-portrait-img {
+  opacity: 1;
+}
+
+[data-theme="dark"] .hero-portrait-img {
+  filter: grayscale(100%) brightness(1.06) contrast(1.04);
+  opacity: 1;
+}
+
 ::selection,
 *::selection,
 ::-moz-selection,
@@ -1134,6 +1162,12 @@ span {
 
 .custom-crosshair--light {
   color: #FFFFFF;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .custom-crosshair {
+    display: none !important;
+  }
 }
 
 @media (pointer: fine) {

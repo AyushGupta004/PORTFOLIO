@@ -8,9 +8,28 @@ import { soundManager } from '../../utils/sound';
 export const CredentialsSection = () => {
   const { credentials } = portfolioContent;
   const viewportRef = useRef<HTMLDivElement>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [layout, setLayout] = useState({ cardWidth: 320, gap: 16, visibleCards: 1 });
   const maxIndex = Math.max(0, credentials.length - layout.visibleCards);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    if (touch) touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartRef.current) return;
+    const touch = e.changedTouches[0];
+    if (!touch) return;
+    const dx = touch.clientX - touchStartRef.current.x;
+    const dy = touch.clientY - touchStartRef.current.y;
+    touchStartRef.current = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+      soundManager.playPop();
+      setActiveIndex((index) => Math.max(0, Math.min(maxIndex, index + (dx < 0 ? 1 : -1))));
+    }
+  };
 
   useEffect(() => {
     const updateLayout = () => {
@@ -38,7 +57,7 @@ export const CredentialsSection = () => {
   return (
     <section
       id="section-08"
-      className="credentials-section relative flex h-full min-h-screen w-full flex-col justify-between px-4 pb-4 pt-[76px] sm:px-6 sm:pb-5 md:px-10 md:pt-[88px] lg:px-12 lg:pt-[92px]"
+      className="credentials-section relative flex min-h-[100dvh] h-auto w-full flex-col justify-between overflow-x-hidden overflow-y-visible px-4 pb-12 pt-[76px] sm:px-6 md:h-full md:min-h-screen md:overflow-hidden md:px-10 md:pb-5 md:pt-[88px] lg:px-12 lg:pt-[92px]"
     >
       <div>
         <div className="credentials-heading-row">
@@ -71,7 +90,12 @@ export const CredentialsSection = () => {
         </div>
 
         <div className="credentials-track-area">
-          <div ref={viewportRef} className="overflow-hidden">
+          <div
+            ref={viewportRef}
+            className="overflow-hidden"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             <motion.div
               className="credentials-track"
               animate={{ x: -offset }}

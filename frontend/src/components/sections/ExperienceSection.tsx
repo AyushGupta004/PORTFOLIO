@@ -22,7 +22,7 @@ export const ExperienceSection: React.FC = () => {
   return (
     <section
       id="section-06"
-      className="relative flex h-full min-h-screen w-full flex-col justify-center overflow-hidden px-6 pb-8 pt-[84px] sm:px-8 lg:px-12"
+      className="relative flex min-h-[100dvh] h-auto w-full flex-col justify-center overflow-x-hidden overflow-y-visible px-6 pb-12 pt-[84px] sm:px-8 md:h-full md:min-h-screen md:overflow-hidden md:pb-8 lg:px-12"
       style={{ backgroundColor: 'var(--bg)' }}
     >
       <div className="mx-auto w-full max-w-[1440px]">
@@ -61,7 +61,7 @@ export const ExperienceSection: React.FC = () => {
                 {experience.map((item, index) => (
                   <div
                     key={`${item.company}-${item.role}`}
-                    className="shrink-0 pr-6"
+                    className="shrink-0 md:pr-6"
                     style={{ width: viewportWidth || '100%' }}
                   >
                     <motion.article
@@ -71,9 +71,9 @@ export const ExperienceSection: React.FC = () => {
                         opacity: hoveredIndex !== null && hoveredIndex !== index ? 0.45 : 1,
                       }}
                       transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                      className="portfolio-card group flex h-[340px] w-full max-w-[440px] flex-col rounded-2xl border border-[#E4E4E7] p-5 text-[#18181B] hover:border-[#18181B] hover:bg-[#18181B] dark:border-white/15 dark:text-white dark:hover:border-white/30 dark:hover:bg-[#09090B] sm:p-6"
+                      className="portfolio-card group flex h-auto min-h-0 w-full max-w-[440px] flex-col overflow-visible rounded-2xl border border-[#E4E4E7] p-5 pb-6 text-[#18181B] hover:border-[#18181B] hover:bg-[#18181B] dark:border-white/15 dark:text-white dark:hover:border-white/30 dark:hover:bg-[#09090B] sm:p-6 md:h-[340px]"
                     >
-                      <div>
+                      <div className="mb-5 md:mb-0">
                         <div className="mb-5 flex items-center justify-between gap-3">
                           <span className="font-label text-[10px] font-bold tracking-[0.12em] text-[#FF3B00]">
                             {item.badge}

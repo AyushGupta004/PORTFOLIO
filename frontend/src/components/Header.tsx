@@ -25,6 +25,7 @@ export const Header: React.FC<HeaderProps> = ({ onLogoClick, className = '' }) =
     let clientX = -100;
     let clientY = -100;
     const updateCursorPosition = (event: PointerEvent) => {
+      if (event.pointerType && event.pointerType !== 'mouse') return;
       clientX = event.clientX;
       clientY = event.clientY;
       if (frame !== 0) return;

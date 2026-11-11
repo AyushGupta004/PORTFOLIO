@@ -83,7 +83,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
       id="section-01"
       className={`relative w-full overflow-hidden text-[var(--ink)] cursor-crosshair ${
         isStacked
-          ? 'min-h-screen h-auto px-5 pt-[88px] pb-6 sm:px-8'
+          ? 'min-h-[100dvh] h-auto px-5 pt-24 pb-6 sm:px-8'
           : 'h-screen min-h-[560px] px-0 pt-[72px]'
       }`}
       style={{
@@ -92,9 +92,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
     >
       <div
         aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          backgroundImage:
+            'radial-gradient(var(--hero-dot-color) 1px, transparent 1px)',
+          backgroundSize: '24px 24px',
+        }}
+      />
+
+      <div
+        aria-hidden="true"
         className={`pointer-events-none absolute left-1/2 z-0 -translate-x-1/2 rounded-full ${
           isStacked
-            ? 'top-[46%] h-[min(70vw,460px)] w-[min(70vw,460px)]'
+            ? 'top-[62%] h-[min(70vw,460px)] w-[min(70vw,460px)]'
             : 'top-[57%] h-[min(700px,72vw,80vh)] w-[min(700px,72vw,80vh)]'
         }`}
         style={{
@@ -104,56 +114,54 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
         }}
       />
 
-      <motion.div
-        aria-hidden="true"
-        className={`hero-watermark pointer-events-none absolute left-1/2 z-[1] h-[1em] w-full whitespace-nowrap font-heading font-bold leading-none tracking-[-0.06em] ${
-          isStacked
-            ? 'top-[52%] overflow-hidden text-center text-[30vw]'
-            : 'top-[14%] text-center text-[clamp(8rem,13vw,18rem)]'
-        }`}
-        style={{
-          fontWeight: 700,
-          x: '-50%',
-          y: !isStacked ? ghostParallax : 0,
-        }}
-      >
-        {heroStates.map((state) => {
-          const isCurrent = state.id === currentStateId;
-          return (
-            <motion.span
-              key={state.id}
-              className="absolute inset-0 flex w-full justify-center whitespace-nowrap"
-              aria-hidden={!isCurrent}
-              initial={{
-                opacity: isCurrent ? 1 : 0,
-                filter: isCurrent ? 'blur(0px)' : 'blur(8px)',
-              }}
-              animate={{
-                opacity: isCurrent ? 1 : 0,
-                filter: isCurrent ? 'blur(0px)' : 'blur(8px)',
-              }}
-              transition={{
-                duration: prefersReducedMotion ? 0 : 0.7,
-                ease: 'easeInOut',
-              }}
-            >
-              {state.line2}
-            </motion.span>
-          );
-        })}
-      </motion.div>
+      {!isStacked && (
+        <motion.div
+          aria-hidden="true"
+          className="hero-watermark pointer-events-none absolute left-1/2 top-[14%] z-[1] h-[1em] w-full whitespace-nowrap text-center font-heading text-[clamp(8rem,13vw,18rem)] font-bold leading-none tracking-[-0.06em]"
+          style={{
+            fontWeight: 700,
+            x: '-50%',
+            y: ghostParallax,
+          }}
+        >
+          {heroStates.map((state) => {
+            const isCurrent = state.id === currentStateId;
+            return (
+              <motion.span
+                key={state.id}
+                className="absolute inset-0 flex w-full justify-center whitespace-nowrap"
+                aria-hidden={!isCurrent}
+                initial={{
+                  opacity: isCurrent ? 1 : 0,
+                  filter: isCurrent ? 'blur(0px)' : 'blur(8px)',
+                }}
+                animate={{
+                  opacity: isCurrent ? 1 : 0,
+                  filter: isCurrent ? 'blur(0px)' : 'blur(8px)',
+                }}
+                transition={{
+                  duration: prefersReducedMotion ? 0 : 0.7,
+                  ease: 'easeInOut',
+                }}
+              >
+                {state.line2}
+              </motion.span>
+            );
+          })}
+        </motion.div>
+      )}
 
       <div
         className={
           isStacked
-            ? 'relative z-30 flex w-full max-w-2xl flex-col items-start'
-            : 'absolute bottom-[5.5vh] left-[5.5vw] z-30 w-[30vw] max-w-[30vw]'
+            ? 'relative z-[3] flex w-full max-w-2xl flex-col items-start'
+            : 'absolute bottom-[5.5vh] left-[5.5vw] z-[3] w-[30vw] max-w-[30vw]'
         }
       >
         <h1
-          className="hero-role-title relative m-0 h-[1.9em] w-full whitespace-nowrap font-heading text-[clamp(2.25rem,3.9vw,4.75rem)] font-bold uppercase leading-[0.95] tracking-[-0.02em]"
+          className="hero-role-title relative m-0 h-[1.95em] w-full whitespace-nowrap font-heading text-[clamp(2.25rem,3.9vw,4.75rem)] font-bold uppercase leading-[0.95] tracking-[-0.02em]"
           style={{
-            fontSize: isStacked ? 'clamp(2.4rem, 10vw, 4.75rem)' : undefined,
+            fontSize: isStacked ? 'clamp(2.25rem, 10vw, 4.5rem)' : undefined,
             fontWeight: 700,
           }}
         >
@@ -250,8 +258,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
       <motion.div
         className={
           isStacked
-            ? 'relative z-30 no-scrollbar mt-6 flex w-[calc(100vw-2.5rem)] max-w-full gap-2 overflow-x-auto overscroll-x-contain pb-2 sm:w-[calc(100vw-4rem)]'
-            : 'absolute bottom-[5.5vh] right-[5.5vw] z-30 flex w-[34vw] flex-col items-end gap-0.5 text-right'
+            ? 'relative z-[3] mt-6 flex w-full flex-wrap gap-2 pb-1'
+            : 'absolute bottom-[5.5vh] right-[5.5vw] z-[3] flex w-[34vw] flex-col items-end gap-0.5 text-right'
         }
         style={{ y: !isStacked ? listParallax : 0 }}
       >
@@ -277,62 +285,112 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onExploreClick }) => {
         })}
       </motion.div>
 
-      <motion.figure
-        data-bleed
-        className={`pointer-events-none z-10 m-0 flex justify-center [mix-blend-mode:multiply] ${
-          isStacked
-            ? 'relative -mx-5 mt-3 h-[55vh] min-h-[320px] items-end overflow-hidden sm:-mx-8'
-            : 'absolute inset-x-0 bottom-0 h-[85vh] items-end overflow-hidden'
-        }`}
-      >
-        {portraitUnavailable ? (
+      {isStacked ? (
+        <div className="relative -mx-5 mt-4 flex h-[52vh] min-h-[300px] items-end justify-center overflow-hidden sm:-mx-8">
           <div
             aria-hidden="true"
-            className={`relative flex h-full items-end justify-center text-[var(--muted)] ${
-              isStacked ? 'w-[70vw]' : 'w-[min(44vw,680px)]'
-            }`}
+            className="hero-watermark pointer-events-none absolute left-1/2 top-[18%] z-[1] h-[1em] w-full -translate-x-1/2 whitespace-nowrap text-center font-heading text-[clamp(3rem,14vw,5.5rem)] font-bold leading-none tracking-[-0.06em]"
+            style={{ fontWeight: 700 }}
           >
-            <svg viewBox="0 0 360 620" className="h-full w-full" fill="currentColor">
-              <ellipse cx="180" cy="145" rx="76" ry="98" />
-              <path d="M37 620c8-160 54-274 143-274s135 114 143 274H37Z" />
-            </svg>
-            <span className="absolute bottom-4 font-label text-[10px] tracking-[0.16em]">
-              // TODO(owner)
-            </span>
+            {heroStates.map((state) => {
+              const isCurrent = state.id === currentStateId;
+              return (
+                <motion.span
+                  key={state.id}
+                  className="absolute inset-0 flex w-full justify-center whitespace-nowrap"
+                  aria-hidden={!isCurrent}
+                  initial={{
+                    opacity: isCurrent ? 1 : 0,
+                    filter: isCurrent ? 'blur(0px)' : 'blur(8px)',
+                  }}
+                  animate={{
+                    opacity: isCurrent ? 1 : 0,
+                    filter: isCurrent ? 'blur(0px)' : 'blur(8px)',
+                  }}
+                  transition={{
+                    duration: prefersReducedMotion ? 0 : 0.7,
+                    ease: 'easeInOut',
+                  }}
+                >
+                  {state.line2}
+                </motion.span>
+              );
+            })}
           </div>
-        ) : (
-          <motion.img
-            src={portraitSource}
-            alt={personal.name}
-            onError={() => {
-              if (portraitSource !== personal.assets.portrait) {
-                setPortraitSource(personal.assets.portrait);
-              } else {
-                setPortraitUnavailable(true);
-              }
-            }}
-            style={{ y: !isStacked ? portraitParallax : 0 }}
-            className={`h-full w-auto max-w-none object-contain object-bottom grayscale contrast-[1.15] ${
-              isStacked ? 'max-w-[100vw]' : 'h-[85vh] max-h-none -mb-[8vh]'
-            }`}
-          />
-        )}
-      </motion.figure>
 
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-20"
-        style={{
-          backgroundImage:
-            'radial-gradient(var(--hero-dot-color) 1px, transparent 1px)',
-          backgroundSize: '24px 24px',
-        }}
-      />
+          <motion.figure
+            data-bleed
+            className="pointer-events-none relative z-[2] m-0 flex h-full w-full items-end justify-center overflow-hidden"
+          >
+            {portraitUnavailable ? (
+              <div
+                aria-hidden="true"
+                className="relative flex h-full w-[70vw] items-end justify-center text-[var(--muted)]"
+              >
+                <svg viewBox="0 0 360 620" className="h-full w-full" fill="currentColor">
+                  <ellipse cx="180" cy="145" rx="76" ry="98" />
+                  <path d="M37 620c8-160 54-274 143-274s135 114 143 274H37Z" />
+                </svg>
+                <span className="absolute bottom-4 font-label text-[10px] tracking-[0.16em]">
+                  // TODO(owner)
+                </span>
+              </div>
+            ) : (
+              <motion.img
+                src={portraitSource}
+                alt={personal.name}
+                onError={() => {
+                  if (portraitSource !== personal.assets.portrait) {
+                    setPortraitSource(personal.assets.portrait);
+                  } else {
+                    setPortraitUnavailable(true);
+                  }
+                }}
+                className="hero-portrait-img relative z-[2] h-full w-auto max-w-[100vw] object-contain object-bottom grayscale contrast-[1.15]"
+              />
+            )}
+          </motion.figure>
+        </div>
+      ) : (
+        <motion.figure
+          data-bleed
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] m-0 flex h-[85vh] items-end justify-center overflow-hidden"
+        >
+          {portraitUnavailable ? (
+            <div
+              aria-hidden="true"
+              className="relative flex h-full w-[min(44vw,680px)] items-end justify-center text-[var(--muted)]"
+            >
+              <svg viewBox="0 0 360 620" className="h-full w-full" fill="currentColor">
+                <ellipse cx="180" cy="145" rx="76" ry="98" />
+                <path d="M37 620c8-160 54-274 143-274s135 114 143 274H37Z" />
+              </svg>
+              <span className="absolute bottom-4 font-label text-[10px] tracking-[0.16em]">
+                // TODO(owner)
+              </span>
+            </div>
+          ) : (
+            <motion.img
+              src={portraitSource}
+              alt={personal.name}
+              onError={() => {
+                if (portraitSource !== personal.assets.portrait) {
+                  setPortraitSource(personal.assets.portrait);
+                } else {
+                  setPortraitUnavailable(true);
+                }
+              }}
+              style={{ y: portraitParallax }}
+              className="hero-portrait-img relative z-[2] -mb-[8vh] h-[85vh] max-h-none w-auto max-w-none object-contain object-bottom grayscale contrast-[1.15]"
+            />
+          )}
+        </motion.figure>
+      )}
 
       {!isStacked && (
         <div
           aria-hidden="true"
-          className={`absolute right-[5.5vw] top-[43%] z-20 flex items-center gap-4 font-heading text-[11px] font-semibold tracking-[0.2em] text-[var(--ink)] transition-opacity duration-500 ${
+          className={`absolute right-[5.5vw] top-[43%] z-[3] flex items-center gap-4 font-heading text-[11px] font-semibold tracking-[0.2em] text-[var(--ink)] transition-opacity duration-500 ${
             isScrolled ? 'pointer-events-none opacity-0' : 'opacity-100'
           }`}
         >

@@ -30,14 +30,33 @@ export const EducationSection: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+
   const moveTrack = (direction: -1 | 1) => {
     setActiveIndex((index) => Math.max(0, Math.min(maxIndex, index + direction)));
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    if (touch) touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartRef.current) return;
+    const touch = e.changedTouches[0];
+    if (!touch) return;
+    const dx = touch.clientX - touchStartRef.current.x;
+    const dy = touch.clientY - touchStartRef.current.y;
+    touchStartRef.current = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+      moveTrack(dx < 0 ? 1 : -1);
+    }
   };
 
   return (
     <section
       id="section-07"
-      className="relative flex h-full min-h-screen w-full flex-col justify-center overflow-hidden px-6 pb-8 pt-[84px] sm:px-8 lg:px-12"
+      className="relative flex min-h-[100dvh] h-auto w-full flex-col justify-center overflow-x-hidden overflow-y-visible px-6 pb-12 pt-[84px] sm:px-8 md:h-full md:min-h-screen md:overflow-hidden md:pb-8 lg:px-12"
       style={{ backgroundColor: 'var(--bg)' }}
     >
       <div className="mx-auto w-full max-w-[1440px]">
@@ -78,7 +97,12 @@ export const EducationSection: React.FC = () => {
           </div>
         </div>
 
-        <div ref={viewportRef} className="overflow-hidden">
+        <div
+          ref={viewportRef}
+          className="overflow-hidden"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           <div className="relative mb-6">
             <motion.div
               className="flex"
@@ -138,9 +162,9 @@ export const EducationSection: React.FC = () => {
                     opacity: hoveredIndex !== null && hoveredIndex !== index ? 0.45 : 1,
                   }}
                   transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                  className="portfolio-card group flex h-[340px] w-full flex-col rounded-2xl border border-[#E4E4E7] p-5 text-[#18181B] hover:border-[#18181B] hover:bg-[#18181B] dark:border-white/15 dark:text-white dark:hover:border-white/30 dark:hover:bg-[#09090B] sm:p-6"
+                  className="portfolio-card group flex h-auto min-h-0 w-full flex-col overflow-visible rounded-2xl border border-[#E4E4E7] p-5 pb-6 text-[#18181B] hover:border-[#18181B] hover:bg-[#18181B] dark:border-white/15 dark:text-white dark:hover:border-white/30 dark:hover:bg-[#09090B] sm:p-6 md:h-[340px]"
                 >
-                  <div>
+                  <div className="mb-5 md:mb-0">
                     <div className="mb-5 flex items-center justify-between gap-3">
                       <span className="font-label text-[10px] font-bold tracking-[0.12em] text-[#FF3B00]">
                         {item.badge}

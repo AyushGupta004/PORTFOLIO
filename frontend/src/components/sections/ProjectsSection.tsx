@@ -16,6 +16,7 @@ const CARD_GAP = 16;
 export const ProjectsSection: React.FC = () => {
   const { projects } = portfolioContent;
   const viewportRef = useRef<HTMLDivElement>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const [activeFilter, setActiveFilter] = useState<ProjectFilter>('All');
   const [hoveredProjectId, setHoveredProjectId] = useState<string | null>(null);
   const [viewportWidth, setViewportWidth] = useState(0);
@@ -56,10 +57,27 @@ export const ProjectsSection: React.FC = () => {
     setActiveIndex((index) => Math.max(0, Math.min(maxIndex, index + direction)));
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    if (touch) touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartRef.current) return;
+    const touch = e.changedTouches[0];
+    if (!touch) return;
+    const dx = touch.clientX - touchStartRef.current.x;
+    const dy = touch.clientY - touchStartRef.current.y;
+    touchStartRef.current = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+      moveTrack(dx < 0 ? 1 : -1);
+    }
+  };
+
   return (
     <section
       id="section-03"
-      className="relative flex h-full min-h-screen w-full flex-col justify-center overflow-hidden px-6 pb-8 pt-[84px] sm:px-8 lg:px-12"
+      className="relative flex min-h-[100dvh] h-auto w-full flex-col justify-center overflow-x-hidden overflow-y-visible px-6 pb-12 pt-[84px] sm:px-8 md:h-full md:min-h-screen md:overflow-hidden md:pb-8 lg:px-12"
       style={{
         backgroundColor: 'var(--bg)',
         backgroundImage: 'radial-gradient(var(--dot-color) 1px, transparent 1px)',
@@ -131,6 +149,8 @@ export const ProjectsSection: React.FC = () => {
           ref={viewportRef}
           className="overflow-hidden"
           onPointerLeave={() => setHoveredProjectId(null)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           <motion.div
             className="flex items-stretch"
@@ -174,10 +194,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     style={{
       width: width || undefined,
       minWidth: width || undefined,
-      height: 360,
       opacity: isDimmed ? 0.45 : 1,
     }}
-    className="portfolio-card group flex shrink-0 flex-col rounded-2xl border border-[var(--border)] p-5 text-[var(--ink)] hover:border-[#18181B] hover:bg-[#18181B] hover:text-white dark:border-white/15 dark:hover:border-white/30 dark:hover:bg-[#09090B] sm:p-6"
+    className="portfolio-card group flex h-auto min-h-0 shrink-0 flex-col overflow-visible rounded-2xl border border-[var(--border)] p-5 pb-6 text-[var(--ink)] hover:border-[#18181B] hover:bg-[#18181B] hover:text-white dark:border-white/15 dark:hover:border-white/30 dark:hover:bg-[#09090B] sm:p-6 md:h-[360px]"
   >
     <div className="flex min-h-4 items-center justify-between gap-3">
       <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-[#71717A] transition-colors duration-[280ms] dark:text-[#A1A1AA] group-hover:text-[#A1A1AA]">
@@ -192,7 +211,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <h3 className="m-0 font-heading text-[22px] font-bold leading-tight tracking-[-0.03em] text-[var(--ink)] transition-colors duration-[280ms] group-hover:text-white">
         {project.title}
       </h3>
-      <p className="mt-3 line-clamp-3 font-sans text-[13px] leading-[1.65] text-[#52525B] transition-colors duration-[280ms] dark:text-[#A1A1AA] group-hover:text-[#A1A1AA]">
+      <p className="mt-3 line-clamp-none font-sans text-[13px] leading-[1.65] text-[#52525B] transition-colors duration-[280ms] dark:text-[#A1A1AA] group-hover:text-[#A1A1AA] md:line-clamp-3">
         {project.blurb}
       </p>
       <div className="mt-4 flex flex-wrap gap-1.5">
@@ -207,7 +226,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
     </div>
 
-    <div className="mt-4 flex items-center justify-between border-t border-[var(--border)] pt-3 transition-colors duration-[280ms] dark:border-white/12 group-hover:border-[#3F3F46]">
+    <div className="mt-5 flex items-center justify-between border-t border-[var(--border)] pt-3 transition-colors duration-[280ms] dark:border-white/12 group-hover:border-[#3F3F46] md:mt-4">
       <a
         href={project.liveUrl ?? '#'}
         onClick={(event) => {
